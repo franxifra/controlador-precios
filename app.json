@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Control de Precios Máximos",
+    "slug": "proyecto-barras",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0288d1"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.xifra.controlpreciosmaximos",
+      "buildNumber": "1.1.0"
+    },
+    "android": {
+      "package": "com.xifra.controlpreciosmaximos",
+      "versionCode": 2,
+      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
+    }
+  }
+}
