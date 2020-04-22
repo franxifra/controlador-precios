@@ -41,7 +41,7 @@ const ProductoIndividual = ({ id, navigation }) => {
       })
 
       .finally(function () {
-        console.log("setea loading false");
+        console.log("setea loading falses");
         setLoading(false);
       })
       .catch(function (error) {
