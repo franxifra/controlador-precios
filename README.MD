@@ -1,4 +1,5 @@
-# PARA HACER
+# Controlador de Precios
+### App para controlar precios cercanos 
 
 ## FUNCIONALIDAD PRECIOS CERCANOS DE PRECIOS CLAROS API
 
