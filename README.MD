@@ -9,13 +9,23 @@
 - [x] Permitir seleccionar provincia modo manual (sin ubicacion dispositivo
 - [x] escaneo productos con codigo de barra con camara
 - [x] mostrar precios maximos de referencia segun provincia y producto Ej: https://preciosmaximos.argentina.gob.ar/api/products?pag=1&Provincia=R%C3%ADo%20Negro&regs=1000
+- [x] AGREGAR BUSCADOR AUTOCOMPLETE DE GOOGLE API PARA SACAR LA LAT Y LONG SIN UBICACIÓN
+
+- [x] CONECTAR LAT Y LONG CON API PRECIOS CLAROS
+- [x] Guardar en context los valores LAT y LONG del usuario
+- [x] llamar a API: https://d3e6htiiul5ek9.cloudfront.net/prod/sucursales?lat= **LAT** &lng= **LONG** &limit=3000& Para obtener sucursales array de cercanas a usuario
+- [x] Obtener datos de producto individual en sucursales cercanas:
+https://d3e6htiiul5ek9.cloudfront.net/prod/producto?limit=30&id_producto= **ID PRODUCTO** &array_sucursales= **ARRAY SUCURSALES**
 
 ## Para hacer
+- [ ] Agregar funcionalidad de busqueda de productos sin escanear
+- [ ] mensaje de producto no encontrado o sin disponibilidad
+- [ ] cambiar rango de busqueda en kilometros y permitir cambiar al usuario
+- [ ] opciones para hacer con los precios (navegar al supermercado, compartir precio,
+- [ ] agregar precios cuidados
+- [ ] Permitir agregar precios al usuario
 
-- [ ] AGREGAR BUSCADOR AUTOCOMPLETE DE GOOGLE API PARA SACAR LA LAT Y LONG SIN UBICACIÓN
 
-- [ ] CONECTAR LAT Y LONG CON API PRECIOS CLAROS
-- [ ] Guardar en context los valores LAT y LONG del usuario
-- [ ] llamar a API: https://d3e6htiiul5ek9.cloudfront.net/prod/sucursales?lat= **LAT** &lng= **LONG** &limit=3000& Para obtener sucursales array de cercanas a usuario
-- [ ] Obtener datos de producto individual en sucursales cercanas:
-https://d3e6htiiul5ek9.cloudfront.net/prod/producto?limit=30&id_producto= **ID PRODUCTO** &array_sucursales= **ARRAY SUCURSALES**
+
+
+
