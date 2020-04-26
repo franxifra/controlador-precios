@@ -1,85 +1,74 @@
-import React, { useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  AsyncStorage,
-  TouchableOpacity,
-} from "react-native";
+import React, { useEffect, useState, useContext } from "react";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { iconos } from "../styles/constantStyles";
 
-import geolocation from "../api/GeoLocation";
 import { texto } from "../styles/constantStyles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import CoordenadasContext from "../context/CoordenadasContext";
+import ProvinciaContext from "../context/ProvinciaContext";
+import DireccionContext from "../context/DireccionContext";
 
 import axios from "axios";
-import PickerProvincia from "../components/pickerProvincia";
 
 const GeoLocationLlamar = ({ latitude, longitude }) => {
+  const { dataCoordenadas, cambiarCoordenadas } = useContext(
+    CoordenadasContext
+  );
+  const { dataProvincia, cambiarProvincia } = useContext(ProvinciaContext);
+  const { dataDireccion, cambiarDireccion } = useContext(DireccionContext);
+
   const [municipio, setMunicipio] = useState("");
   const [provincia, setProvincia] = useState("");
-  const [botonCambiar, setBotonCambiar] = useState(false);
 
   useEffect(() => {
-    latitude &&
-      longitude &&
+    dataCoordenadas.lat &&
+      dataCoordenadas.lng &&
       axios
         .get(
-          `https://apis.datos.gob.ar/georef/api/ubicacion?lat=${latitude}&lon=${longitude}`
+          `https://apis.datos.gob.ar/georef/api/ubicacion?lat=${dataCoordenadas.lat}&lon=${dataCoordenadas.lng}`
         )
         .then(function (response) {
-          setMunicipio(response.data.ubicacion.municipio.nombre);
+          response.data.ubicacion.municipio.nombre &&
+            setMunicipio(response.data.ubicacion.municipio.nombre);
+          response.data.ubicacion.provincia.nombre &&
+            cambiarProvincia(response.data.ubicacion.provincia.nombre);
           setProvincia(response.data.ubicacion.provincia.nombre);
         })
         .catch(function (error) {
           // handle error
           console.log("Error llamando provincia " + error);
         });
-  }, [latitude, longitude]);
+  }, [dataCoordenadas.lat, dataCoordenadas.lng]);
 
-  AsyncStorage.setItem("municipio", municipio);
-  AsyncStorage.setItem("provincia", provincia);
-
-  return !botonCambiar ? (
-    provincia === "" ? (
-      latitude && (
-        <>
-          <Text style={texto.parrafo}>Cargando ubicación desde GPS...</Text>
-          <TouchableOpacity
-            onPress={() => {
-              setBotonCambiar(true);
-            }}
-          >
-            <Text style={styles.botonCambiar}>
-              Elegi la ubicación manualmente
-            </Text>
-          </TouchableOpacity>
-        </>
-      )
-    ) : (
+  return dataCoordenadas.lat ? (
+    dataCoordenadas.lng && (
       <>
         <View
           style={{
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
+            marginHorizontal: 20,
           }}
         >
-          <MaterialCommunityIcons name="compass" style={iconos.principal} />
+          <MaterialCommunityIcons
+            name="compass"
+            style={[iconos.principal, { flex: 1 }]}
+          />
 
-          <View>
-            <Text style={[texto.parrafo, styles.bold, { textAlign: "left" }]}>
-              {municipio}
-            </Text>
-            <Text style={[texto.parrafo, { textAlign: "left" }]}>
-              Provincia de
-            </Text>
-            <Text style={[texto.parrafo, styles.bold, { textAlign: "left" }]}>
-              {provincia}
-            </Text>
+          <View style={{ flex: 2 }}>
+            {dataDireccion != "" ? (
+              <Text style={[texto.parrafo, { textAlign: "left" }]}>
+                {dataDireccion}
+              </Text>
+            ) : (
+              <Text style={[texto.parrafo, { textAlign: "left" }]}>
+                tu posición GPS cerca de {municipio} provincia de {provincia}
+              </Text>
+            )}
             <TouchableOpacity
               onPress={() => {
-                setBotonCambiar(true);
+                cambiarCoordenadas("cambio");
               }}
             >
               <Text
@@ -96,10 +85,7 @@ const GeoLocationLlamar = ({ latitude, longitude }) => {
       </>
     )
   ) : (
-    <>
-      <Text style={styles.texto}>Estas en provincia de:</Text>
-      <PickerProvincia />
-    </>
+    <Text></Text>
   );
 };
 

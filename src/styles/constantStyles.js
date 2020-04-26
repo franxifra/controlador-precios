@@ -48,18 +48,30 @@ const texto = StyleSheet.create({
     fontSize: RFPercentage(8),
     textAlign: "center",
   },
+  lista: {
+    fontSize: RFPercentage(1.8),
+    color: colores.colorTexto,
+  },
+  listaPrecio: {
+    fontSize: RFPercentage(2),
+    color: colores.colorTexto,
+    fontWeight: "bold",
+  },
 });
 
 const imagen = StyleSheet.create({
   producto: {
-    width: RFPercentage(25),
-    height: RFPercentage(25),
-    alignSelf: "center",
+    width: RFPercentage(15),
+    height: RFPercentage(15),
   },
   logo: {
     width: RFPercentage(15),
     height: RFPercentage(15),
     alignSelf: "center",
+  },
+  logoSupermercado: {
+    width: RFPercentage(5),
+    height: RFPercentage(5),
   },
 });
 

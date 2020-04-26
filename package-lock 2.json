@@ -1027,15 +1027,6 @@
         "to-fast-properties": "^2.0.0"
       }
     },
-    "@callstack/react-theme-provider": {
-      "version": "3.0.5",
-      "resolved": "https://registry.npmjs.org/@callstack/react-theme-provider/-/react-theme-provider-3.0.5.tgz",
-      "integrity": "sha512-Iec+ybWN0FvNj87sD3oWo/49edGUP0UOSdMnzCJEFJIDYr992ECIuOV89burAAh2/ibPCxgLiK6dmgv2mO/8Tg==",
-      "requires": {
-        "deepmerge": "^3.2.0",
-        "hoist-non-react-statics": "^3.3.0"
-      }
-    },
     "@cnakazawa/watch": {
       "version": "1.0.4",
       "resolved": "https://registry.npmjs.org/@cnakazawa/watch/-/watch-1.0.4.tgz",
@@ -3607,14 +3598,6 @@
       "resolved": "https://registry.npmjs.org/hermes-engine/-/hermes-engine-0.2.1.tgz",
       "integrity": "sha512-eNHUQHuadDMJARpaqvlCZoK/Nitpj6oywq3vQ3wCwEsww5morX34mW5PmKWQTO7aU0ck0hgulxR+EVDlXygGxQ=="
     },
-    "hoist-non-react-statics": {
-      "version": "3.3.2",
-      "resolved": "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz",
-      "integrity": "sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==",
-      "requires": {
-        "react-is": "^16.7.0"
-      }
-    },
     "hosted-git-info": {
       "version": "2.8.8",
       "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.8.tgz",
@@ -4167,11 +4150,6 @@
       "version": "4.17.15",
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz",
       "integrity": "sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A=="
-    },
-    "lodash.debounce": {
-      "version": "4.0.8",
-      "resolved": "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz",
-      "integrity": "sha1-gteb/zCmfEAF/9XiUVMArZyk168="
     },
     "lodash.throttle": {
       "version": "4.1.1",
@@ -5767,29 +5745,10 @@
       "resolved": "https://registry.npmjs.org/react-native-flash/-/react-native-flash-0.2.2.tgz",
       "integrity": "sha512-AOh9vyIWkeoT9B90Ca/6cZ7bp94zmHCh1k2KBgiyIWIHrSjlVNm9KGTI5VxXeqXdY05/F3dH3K5E7k/gCgUx1Q=="
     },
-    "react-native-google-places-autocomplete": {
-      "version": "github:FaridSafi/react-native-google-places-autocomplete#bc31ed3a5f7c01ad7b5cef65781682c2a6a56995",
-      "from": "github:FaridSafi/react-native-google-places-autocomplete#pull/505/head",
-      "requires": {
-        "lodash.debounce": "^4.0.8",
-        "prop-types": "^15.5.10",
-        "qs": "~6.9.1"
-      }
-    },
     "react-native-iphone-x-helper": {
       "version": "1.2.1",
       "resolved": "https://registry.npmjs.org/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz",
       "integrity": "sha512-/VbpIEp8tSNNHIvstuA3Swx610whci1Zpc9mqNkqn14DkMbw+ORviln2u0XyHG1kPvvwTNGZY6QpeFwxYaSdbQ=="
-    },
-    "react-native-paper": {
-      "version": "3.8.0",
-      "resolved": "https://registry.npmjs.org/react-native-paper/-/react-native-paper-3.8.0.tgz",
-      "integrity": "sha512-3oNHjhjhpi/UDbYwwgeWQKf1qRbqQ7aTO0EUHbcxPNEq5BLClpI3kBoS6JTKk4Ge86xeJikXHHXN953g1mVr3Q==",
-      "requires": {
-        "@callstack/react-theme-provider": "^3.0.5",
-        "color": "^3.1.2",
-        "react-native-safe-area-view": "^0.14.6"
-      }
     },
     "react-native-responsive-fontsize": {
       "version": "0.4.3",
@@ -5803,21 +5762,6 @@
       "version": "0.7.3",
       "resolved": "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-0.7.3.tgz",
       "integrity": "sha512-9Uqu1vlXPi+2cKW/CW6OnHxA76mWC4kF3wvlqzq4DY8hn37AeiXtLFs2WkxH4yXQRrnJdP6ivc65Lz+MqwRZAA=="
-    },
-    "react-native-safe-area-view": {
-      "version": "0.14.9",
-      "resolved": "https://registry.npmjs.org/react-native-safe-area-view/-/react-native-safe-area-view-0.14.9.tgz",
-      "integrity": "sha512-WII/ulhpVyL/qbYb7vydq7dJAfZRBcEhg4/UWt6F6nAKpLa3gAceMOxBxI914ppwSP/TdUsandFy6lkJQE0z4A==",
-      "requires": {
-        "hoist-non-react-statics": "^2.3.1"
-      },
-      "dependencies": {
-        "hoist-non-react-statics": {
-          "version": "2.5.5",
-          "resolved": "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz",
-          "integrity": "sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw=="
-        }
-      }
     },
     "react-native-screens": {
       "version": "2.5.0",

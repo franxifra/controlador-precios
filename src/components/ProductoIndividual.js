@@ -7,135 +7,219 @@ import {
   AsyncStorage,
   Image,
   TouchableOpacity,
+  FlatList,
+  ScrollView,
 } from "react-native";
+import { DataTable } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { imagen, texto } from "../styles/constantStyles";
+import { imagen, texto, colores } from "../styles/constantStyles";
 import PickerProvincia from "../components/pickerProvincia";
 
 import ProvinciaContext from "../context/ProvinciaContext";
+import SucursalesContext from "../context/SucursalesContext";
 
 import axios from "axios";
 import BotonesProducto from "./BotonesProducto";
-import * as RootNavigation from "../../RootNavigation";
 
 const ProductoIndividual = ({ id, navigation }) => {
   const { dataProvincia, cambiarProvincia } = useContext(ProvinciaContext);
+  const { dataSucursales, cambiarSucursales } = useContext(SucursalesContext);
+
   const [provincia, setProvincia] = useState("");
   const [producto, setProducto] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [tiempo, setTiempo] = useState(false);
+  const [productoPrecioClaro, setProductoPrecioClaro] = useState(false);
 
-  console.log("la provincia es " + dataProvincia);
+  const [loading, setLoading] = useState(true);
+
+  //filtrar provincia
+  const provinciaFiltrada =
+    dataProvincia === "Ciudad Autónoma de Buenos Aires"
+      ? "CABA"
+      : dataProvincia ===
+        "Tierra del Fuego, Antártida e Islas del Atlántico Sur"
+      ? "Tierra del Fuego"
+      : encodeURI(dataProvincia);
 
   useEffect(() => {
     //llamamos a la api con useEffect para llamarla sol cuando cambie la provincia
     axios
       .get(
-        `https://preciosmaximos.argentina.gob.ar/api/products?pag=1&Provincia=${encodeURI(
-          dataProvincia
-        )}&regs=5000`
+        `https://preciosmaximos.argentina.gob.ar/api/products?pag=1&Provincia=${provinciaFiltrada}&regs=5000`
       )
       .then(function (response) {
         setProducto(response.data.result);
         console.log("la api busca");
       })
 
-      .finally(function () {
-        console.log("setea loading false");
-        setLoading(false);
-      })
       .catch(function (error) {
         // handle error
         console.log("esto da error " + error);
       });
 
-    const timer = setTimeout(() => {
-      setTiempo(true);
-    }, 500);
-    return () => clearTimeout(timer);
+    // hacer llamado a sucursales
   }, [dataProvincia /* llamar API solo cuando provincia cambie*/]);
 
-  // recuperar datos de provincia segun posicion del usuario utilizando AsyncStorage
-  let Hola = async () => {
-    try {
-      const getProvincia = await AsyncStorage.getItem("provincia");
-      setProvincia(getProvincia);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-  Hola();
-  console.log("obtuvo producto exitoso fuera de use effect" + producto);
-  console.log(producto.length);
+  useEffect(() => {
+    //llamar api con id producto y sucursales para Precios Claros
+    setLoading(true);
+    axios
+      .get(
+        `https://d3e6htiiul5ek9.cloudfront.net/prod/producto?limit=30&id_producto=${id}&array_sucursales=${dataSucursales.map(
+          (sucursal) => `${sucursal.id}`
+        )}`
+      )
+      .then(function (response) {
+        setProductoPrecioClaro(response.data);
+        console.log("la api de precios claros busca");
+        console.log("setea loading false");
+        setLoading(false);
+      })
+
+      .catch(function (error) {
+        // handle error
+        console.log("buscar productos claros error " + error);
+      });
+  }, [id, dataSucursales]);
 
   // filtramos array de productos para encontrar el escaneado
   const productoIndividual = producto.filter((d) => d.id_producto == id);
-  console.log(productoIndividual[0]);
 
-  if (loading || !tiempo || producto.length === 0) {
+  if (loading) {
     return <Text style={texto.titulo}>Buscando..</Text>;
-  } else if (typeof productoIndividual[0] === "undefined") {
+  } else if (!productoPrecioClaro.hasOwnProperty("producto")) {
     return (
       <>
-        {console.log("se activo el if")}
-
         <Text style={texto.parrafo}>
           El producto no se encuentra en la lista de precios maximos de
           referencia
         </Text>
-        {/* {setTimeout(() => {
-          console.log("pasaron 2 segundos");
-        }, 1000)} */}
         <BotonesProducto noencontrado />
       </>
     );
   } else {
-    console.log(productoIndividual);
     return (
       <>
         <View
           style={{
-            backgroundColor: "white",
-            flex: 2,
+            flex: 1,
             justifyContent: "center",
             marginHorizontal: 25,
+            flexDirection: "row",
           }}
         >
           <Image
-            style={imagen.producto}
+            style={[imagen.producto, { flex: 1 }]}
             source={{
               uri: `https://imagenes.preciosclaros.gob.ar/productos/${id}.jpg`,
             }}
           />
-        </View>
-        <View
-          style={{ flex: 2, justifyContent: "flex-end", marginHorizontal: 25 }}
-        >
-          <Text style={[texto.titulo, { marginTop: 10 }]}>
-            {typeof producto[0] !== "undefined" &&
-              productoIndividual[0].Producto}
-          </Text>
-          <Text style={[texto.parrafo, { marginTop: 10 }]}>
-            Precio Máximo sugerido:
-          </Text>
-          <Text style={texto.precio}>
-            ${productoIndividual[0]["Precio sugerido"]}
-          </Text>
+          <View style={{ flex: 2 }}>
+            <Text style={[texto.parrafo, { marginTop: 10, fontWeight: "600" }]}>
+              {typeof productoPrecioClaro.producto.nombre !== "undefined" &&
+                productoPrecioClaro.producto.nombre}
+            </Text>
+            {productoIndividual.length > 0 && (
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <Text
+                  style={[
+                    texto.parrafo,
+                    {
+                      marginTop: 10,
+                      fontSize: 12,
+                      flex: 1,
+                    },
+                  ]}
+                >
+                  Precio Máximo sugerido:
+                </Text>
+                <Text style={[texto.parrafo, { fontSize: 20 }]}>
+                  ${productoIndividual[0]["Precio sugerido"]}
+                </Text>
+              </View>
+            )}
+            <View>
+              <Text
+                style={[
+                  texto.chico,
+                  { marginRight: 3, fontSize: 10, textAlign: "center" },
+                ]}
+              >
+                Precios válidos para la provincia de {dataProvincia}
+              </Text>
+            </View>
+          </View>
         </View>
         <View
           style={{
-            flexDirection: "row",
-            marginHorizontal: 20,
-            flexWrap: "wrap",
+            flex: 3,
             justifyContent: "center",
+            borderTopColor: colores.colorTexto,
+            borderTopWidth: 1,
           }}
         >
-          <Text style={[texto.chico, { marginRight: 3 }]}>
-            Valido para la provincia de {dataProvincia}
-          </Text>
-          <PickerProvincia cambiar />
+          <ScrollView>
+            {productoPrecioClaro.sucursales
+              .filter((key) => key.preciosProducto)
+              .map((sucursal) => {
+                let kilometros = "";
+                if (
+                  dataSucursales.filter(
+                    (sucu) =>
+                      sucu.id ===
+                      `${sucursal.comercioId}-${sucursal.banderaId}-${sucursal.id}`
+                  )[0]
+                ) {
+                  kilometros = dataSucursales.filter(
+                    (sucu) =>
+                      sucu.id ===
+                      `${sucursal.comercioId}-${sucursal.banderaId}-${sucursal.id}`
+                  )[0].distanciaDescripcion;
+                }
+                return (
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      borderBottomColor: colores.colorTexto,
+                      borderBottomWidth: 1,
+                      paddingVertical: 15,
+                      paddingHorizontal: 5,
+                    }}
+                  >
+                    <View>
+                      <Image
+                        source={{
+                          uri: `https://imagenes.preciosclaros.gob.ar/comercios/${sucursal.comercioId}-${sucursal.banderaId}.jpg`,
+                        }}
+                        style={imagen.logoSupermercado}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        flex: 1,
+                        marginLeft: 5,
+                      }}
+                    >
+                      <Text style={texto.listaPrecio}>
+                        $
+                        {sucursal.hasOwnProperty("preciosProducto") &&
+                          sucursal.preciosProducto.precioLista}{" "}
+                        a {kilometros}
+                      </Text>
+                      <Text style={texto.lista}>
+                        {sucursal.banderaDescripcion} {sucursal.direccion}{" "}
+                        {sucursal.localidad}
+                      </Text>
+                    </View>
+                  </View>
+                );
+              })}
+          </ScrollView>
         </View>
-        <View style={{ flex: 2, justifyContent: "center" }}>
+        <View style={{ flex: 1, justifyContent: "center" }}>
           <BotonesProducto individual />
         </View>
       </>
