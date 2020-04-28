@@ -3,6 +3,7 @@ import { ProvinciaProvider } from "./src/context/ProvinciaContext";
 import { CoordenadasProvider } from "./src/context/CoordenadasContext";
 import { DireccionProvider } from "./src/context/DireccionContext";
 import { SucursalesProvider } from "./src/context/SucursalesContext";
+import { RangoDistanciaProvider } from "./src/context/RangoDistanciaContext";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -12,6 +13,7 @@ import TabBarIcon from "./src/components/TabBarIcon";
 import Producto from "./src/screens/Producto";
 import { navigationRef } from "./RootNavigation";
 import { colores } from "./src/styles/constantStyles";
+import Buscar from "./src/screens/Buscar";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +30,7 @@ const App = function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: "Chequeá tu posición",
+            title: "Posición",
 
             headerTintColor: "#fff",
             tabBarIcon: ({ focused }) => (
@@ -41,10 +43,22 @@ const App = function App() {
           }}
         />
         <Tab.Screen
+          name="Busca"
+          component={Buscar}
+          options={{
+            title: "Buscá",
+
+            headerTintColor: "#fff",
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon focused={focused} name="search" libreria="Feather" />
+            ),
+          }}
+        />
+        <Tab.Screen
           name="Scanner"
           component={Scanner}
           options={{
-            title: "Scaneá el producto",
+            title: "Escaneá",
             tabBarIcon: ({ focused }) => (
               <TabBarIcon
                 focused={focused}
@@ -75,14 +89,16 @@ const App = function App() {
 
 export default () => {
   return (
-    <SucursalesProvider>
-      <DireccionProvider>
-        <CoordenadasProvider>
-          <ProvinciaProvider>
-            <App />
-          </ProvinciaProvider>
-        </CoordenadasProvider>
-      </DireccionProvider>
-    </SucursalesProvider>
+    <RangoDistanciaProvider>
+      <SucursalesProvider>
+        <DireccionProvider>
+          <CoordenadasProvider>
+            <ProvinciaProvider>
+              <App />
+            </ProvinciaProvider>
+          </CoordenadasProvider>
+        </DireccionProvider>
+      </SucursalesProvider>
+    </RangoDistanciaProvider>
   );
 };

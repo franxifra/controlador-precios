@@ -6,7 +6,7 @@ const colores = {
   colorTexto: "white",
   colorFondo: "#0288d1",
   colorPrimario: "#004c8c",
-  colorSecundario: "#005662",
+  colorSecundario: "#444",
   inactivo: "#999",
 };
 
@@ -53,7 +53,7 @@ const texto = StyleSheet.create({
     color: colores.colorTexto,
   },
   listaPrecio: {
-    fontSize: RFPercentage(2),
+    fontSize: RFPercentage(2.3),
     color: colores.colorTexto,
     fontWeight: "bold",
   },
@@ -61,8 +61,8 @@ const texto = StyleSheet.create({
 
 const imagen = StyleSheet.create({
   producto: {
-    width: RFPercentage(15),
-    height: RFPercentage(15),
+    width: RFPercentage(18),
+    height: RFPercentage(18),
   },
   logo: {
     width: RFPercentage(15),
@@ -72,6 +72,26 @@ const imagen = StyleSheet.create({
   logoSupermercado: {
     width: RFPercentage(5),
     height: RFPercentage(5),
+  },
+});
+
+const input = StyleSheet.create({
+  buscar: {
+    marginHorizontal: 20,
+    backgroundColor: colores.colorTexto,
+    flexDirection: "row",
+  },
+  BuscarIcono: {
+    fontSize: RFPercentage(3),
+    color: colores.inactivo,
+    alignSelf: "center",
+    padding: 10,
+  },
+  buscarInput: {
+    flex: 1,
+    fontSize: RFPercentage(2.5),
+
+    padding: 10,
   },
 });
 
@@ -88,7 +108,7 @@ const botones = StyleSheet.create({
   botonSecundario: {
     flexDirection: "row",
     padding: 15,
-    backgroundColor: colores.colorSecundario,
+    backgroundColor: colores.colorTexto,
     marginTop: 15,
     justifyContent: "center",
     marginHorizontal: 23,
@@ -107,4 +127,4 @@ const botones = StyleSheet.create({
   },
 });
 
-export { container, botones, texto, imagen, colores, iconos };
+export { container, botones, texto, imagen, colores, iconos, input };

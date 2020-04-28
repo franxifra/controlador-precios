@@ -61,6 +61,10 @@ const GeoLocationLlamar = ({ latitude, longitude }) => {
               <Text style={[texto.parrafo, { textAlign: "left" }]}>
                 {dataDireccion}
               </Text>
+            ) : provincia === "" ? (
+              <Text style={[texto.parrafo, { textAlign: "left" }]}>
+                Cargando posición..
+              </Text>
             ) : (
               <Text style={[texto.parrafo, { textAlign: "left" }]}>
                 tu posición GPS cerca de {municipio} provincia de {provincia}

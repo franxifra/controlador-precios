@@ -1,29 +1,48 @@
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import * as RootNavigation from "../../RootNavigation";
-import { botones } from "../styles/constantStyles";
+import { botones, colores } from "../styles/constantStyles";
 import * as WebBrowser from "expo-web-browser";
 
-const BotonesProducto = ({ individual, noencontrado, home }) => {
+const BotonesProducto = ({ individual, noencontrado, scanner, home }) => {
   return (
     <>
-      <TouchableOpacity
-        style={botones.botonPrimario}
-        onPress={() => RootNavigation.navigate("Scanner")}
-      >
-        <MaterialCommunityIcons
-          name="barcode-scan"
-          style={botones.botonIcono}
-        />
-        <Text style={botones.botonTexto}>
-          Escanear {individual && "otro "}
-          {noencontrado && "otro "}Producto
-        </Text>
-      </TouchableOpacity>
+      {home && (
+        <>
+          <TouchableOpacity
+            style={botones.botonPrimario}
+            onPress={() => RootNavigation.navigate("Scanner")}
+          >
+            <MaterialCommunityIcons
+              name="barcode-scan"
+              style={botones.botonIcono}
+            />
+            <Text style={botones.botonTexto}>
+              Escanear {individual && "otro "}
+              {noencontrado && "otro "}Producto
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={botones.botonSecundario}
+            onPress={() => RootNavigation.navigate("Busca")}
+          >
+            <Feather
+              name="search"
+              style={[botones.botonIcono, { color: colores.colorSecundario }]}
+            />
+            <Text
+              style={[botones.botonTexto, { color: colores.colorSecundario }]}
+            >
+              Buscar {individual && "otro "}
+              {noencontrado && "otro "}Producto
+            </Text>
+          </TouchableOpacity>
+        </>
+      )}
       {individual && (
         <TouchableOpacity
-          style={botones.botonSecundario}
+          style={[botones.botonPrimario]}
           onPress={() =>
             WebBrowser.openBrowserAsync(
               "https://preciosmaximos.argentina.gob.ar/#/avisos-consumidores"

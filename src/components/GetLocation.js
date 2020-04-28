@@ -13,7 +13,6 @@ export default function GetLocation() {
     CoordenadasContext
   );
   const { dataSucursales, cambiarSucursales } = useContext(SucursalesContext);
-  console.log(dataSucursales);
   useEffect(() => {
     !dataCoordenadas.lat &&
       (async () => {
@@ -48,7 +47,7 @@ export default function GetLocation() {
             );
             console.log(
               response.data.sucursales
-                .filter((key) => key.id)
+                .filter((key) => key.distanciaNumero <= 50)
                 .map((sucursal) => ({
                   id: sucursal.id,
                   distancia: sucursal.distanciaNumero,
