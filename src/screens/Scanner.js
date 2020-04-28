@@ -6,39 +6,21 @@ import {
   AsyncStorage,
   SafeAreaView,
 } from "react-native";
-import ProvinciaContext from "../context/ProvinciaContext";
+import CoordenadasContext from "../context/CoordenadasContext";
 import { useIsFocused } from "@react-navigation/native";
 import { colores, texto, container } from "../styles/constantStyles";
 import PickerProvincia from "../components/pickerProvincia";
 import ScannerCall from "../components/ScannerCall";
+import CallAutocompleteGoogle from "../components/CallAutocompleteGoogle";
 
 const Scanner = () => {
-  const { dataProvincia, cambiarProvincia } = useContext(ProvinciaContext);
+  const { dataCoordenadas, cambiarCoordenadas } = useContext(
+    CoordenadasContext
+  );
   const isFocused = useIsFocused();
-  const [provincia, setProvincia] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // setear provincia nueva desde picker
-  function nuevaProvincia(newValue) {
-    setProvincia(newValue);
-  }
-
-  useEffect(() => {
-    let Hola = async () => {
-      try {
-        const getProvincia = await AsyncStorage.getItem("provincia");
-        setProvincia(getProvincia);
-        console.log(provincia);
-        setLoading(false);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    Hola();
-  });
-
-  console.log(provincia);
-  if (dataProvincia != "" && !loading) {
+  if (dataCoordenadas != "") {
     return (
       <>
         <SafeAreaView style={styles.container}>
@@ -51,17 +33,12 @@ const Scanner = () => {
     );
   } else {
     return (
-      <>
-        <SafeAreaView style={styles.container}>
-          <Text style={texto.titulo}>
-            selecciona tu provincia para utilizar el scanner
-          </Text>
-          <PickerProvincia
-            provinciaScanner={provincia}
-            onChange={nuevaProvincia}
-          />
-        </SafeAreaView>
-      </>
+      <SafeAreaView style={styles.container}>
+        <Text style={texto.titulo}>
+          Selecciona tu dirección antes de continuar
+        </Text>
+        <CallAutocompleteGoogle />
+      </SafeAreaView>
     );
   }
 };
