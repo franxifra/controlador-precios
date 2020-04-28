@@ -18,10 +18,10 @@
 https://d3e6htiiul5ek9.cloudfront.net/prod/producto?limit=30&id_producto= **ID PRODUCTO** &array_sucursales= **ARRAY SUCURSALES**
 
 ## Para hacer
-- [ ] Agregar funcionalidad de busqueda de productos sin escanear
-- [ ] mensaje de producto no encontrado o sin disponibilidad
-- [ ] cambiar rango de busqueda en kilometros y permitir cambiar al usuario
-- [ ] opciones para hacer con los precios (navegar al supermercado, compartir precio,
+- [x] Agregar funcionalidad de busqueda de productos sin escanear
+- [x] mensaje de producto no encontrado o sin disponibilidad
+- [x] cambiar rango de busqueda en kilometros y permitir cambiar al usuario
+- [x] opciones para hacer con los precios (navegar al supermercado, compartir precio,
 - [ ] agregar precios cuidados
 - [ ] Permitir agregar precios al usuario
 
