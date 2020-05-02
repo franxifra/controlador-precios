@@ -1,5 +1,15 @@
 # Controlador de Precios
-###### App para controlar precios cercanos mediante busqueda, escaneo de codigo de barras. 
+Primer proyecto Open Source de app de control de precios de Argentina.
+
+App para controlar precios cercanos mediante busqueda, escaneo de codigo de barras programada en React Native para IOS y Android.
+
+<img src="https://lh3.googleusercontent.com/uVJfn1APIWmcdpgViNn6Rb1Bqo7cBA142B8-HLMMUOcHb0HisOzb0IkJzpBtHvfc9q7x=w1440-h789-rw" width="250" height="auto"/>&nbsp;&nbsp;&nbsp;<img src="https://lh3.googleusercontent.com/Lk33U-sz78oXub7Y7ads6SCNh58wKiXhz79kAyTu83ZK29LtMnmpu_IpvWWP0LI-BOE=w1440-h789-rw" width="250" height="auto"/>
+
+## Descargar App en Play Store
+<a href="https://play.google.com/store/apps/details?id=com.xifra.controlpreciosmaximos" target="_BLANK"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/es-419_badge_web_generic.png" width="250" height="auto"/></a>
+
+
+
 ### Datos de Precios
 - [x] Precios claros Minoristas: http://preciosclaros.gob.ar/
 - [ ] Precios claros Mayoristas: https://mayoristas.preciosclaros.gob.ar/ (NO IMPLEMENTADO TODAVÍA)
@@ -33,11 +43,17 @@ https://d3e6htiiul5ek9.cloudfront.net/prod/producto?limit=30&id_producto= **ID P
 - [ ] Funcionalidad armar lista de compras y ver donde mas conviene comprarlo
 - [ ] Permitir agregar precios al usuario
 - [ ] Hacer version de navegador con React Native Web
-- [ ] Analizar UX
 
-## Para hacer (Marketing)
+## Para hacer (Marketing y diseño)
 - [ ] Conseguir fondos para lanzarla en App Store
 - [ ] Promocionarla en distintos medios de comunicación
+- [ ] Evaluar un nuevo Logo
+- [ ] Analizar UX
+
+
+
+## Más capturas de la App
+<img src="https://lh3.googleusercontent.com/Oc-xnIBCrF3j74tvDP2GfrCyH6HzguBHau540ETBLFey4dSyVRjffcC-nGAptzZaeXwU=w1440-h789-rw" width="250" height="auto"/>&nbsp;&nbsp;&nbsp;<img src="https://lh3.googleusercontent.com/gvMlGErn_630BjVvVDx_zkurQp53CSFQ9M780vV75hDBRCFw5Uda8rrilSxb5fZIXw=w1440-h789-rw" width="250" height="auto"/>&nbsp;&nbsp;&nbsp;<img src="https://lh3.googleusercontent.com/TqKrzBn2LrpmNVTh1oTR3qdpZpl28m4t7BjET7EibWc9OIoJaxhZVDJUB2fYVnM_xg=w1440-h789-rw" width="250" height="auto"/>
 
 
 Abierto a nuevas ideas, colaboradores y propuestas!
