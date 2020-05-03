@@ -1,4 +1,4 @@
-# Controlador de Precios
+# Comparador de Precios
 Primer proyecto Open Source de app de control de precios de Argentina.
 
 App para controlar precios cercanos mediante busqueda, escaneo de codigo de barras programada en React Native para IOS y Android.
