@@ -10,10 +10,8 @@ import {
   Linking,
   Share,
 } from "react-native";
-import { DataTable } from "react-native-paper";
 import { MaterialCommunityIcons, Feather } from "@expo/vector-icons";
 import { imagen, texto, colores } from "../styles/constantStyles";
-import PickerProvincia from "../components/pickerProvincia";
 
 import ProvinciaContext from "../context/ProvinciaContext";
 import SucursalesContext from "../context/SucursalesContext";

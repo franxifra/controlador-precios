@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 // llamar width pantalla
@@ -23,6 +23,7 @@ const container = StyleSheet.create({
     backgroundColor: colores.colorFondo,
     flex: 1,
     justifyContent: "center",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
 });
 

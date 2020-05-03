@@ -11,22 +11,22 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 import * as RootNavigation from "../../RootNavigation";
 import { colores, texto } from "../styles/constantStyles";
-import axios from "axios";
 import { Camera } from "expo-camera";
+import * as Permissions from "expo-permissions";
 
 export default function ScannerCall() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [provincia, setProvincia] = useState("");
   const [arrayProductos, setArrayProductos] = useState([]);
   const [flash, setFlash] = useState("off");
 
   useEffect(() => {
     (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      const { status } = await Permissions.askAsync(Permissions.CAMERA);
+      console.log(status);
       setHasPermission(status === "granted");
     })();
-  }, []);
+  });
 
   const handleBarCodeScanned = ({ type, data }) => {
     RootNavigation.navigate("Producto", {
@@ -73,10 +73,17 @@ export default function ScannerCall() {
   }
   if (hasPermission === false) {
     return (
-      <Text style={texto.titulo}>
-        Para escanear el producto tenes que permitir a la aplicacion el uso de
-        la camara
-      </Text>
+      <View
+        style={{
+          flex: 6,
+          backgroundColor: colores.colorFondo,
+        }}
+      >
+        <Text style={texto.parrafo}>
+          Para escanear el producto tenes que permitir a la aplicacion el uso de
+          la camara
+        </Text>
+      </View>
     );
   }
 

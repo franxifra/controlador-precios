@@ -123,7 +123,7 @@ const Buscar = () => {
             </View>
             <View style={{ flex: 3 }}>
               {busqueda === false ? (
-                <View></View>
+                <View style={{ flex: 1 }}></View>
               ) : loading === true ? (
                 <Text
                   style={{ alignSelf: "center", color: colores.colorTexto }}

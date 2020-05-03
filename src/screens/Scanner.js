@@ -1,15 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  AsyncStorage,
-  SafeAreaView,
-} from "react-native";
+import React, { useContext } from "react";
+import { Text, StyleSheet, SafeAreaView } from "react-native";
 import CoordenadasContext from "../context/CoordenadasContext";
 import { useIsFocused } from "@react-navigation/native";
-import { colores, texto, container } from "../styles/constantStyles";
-import PickerProvincia from "../components/pickerProvincia";
+import { texto, container } from "../styles/constantStyles";
 import ScannerCall from "../components/ScannerCall";
 import CallAutocompleteGoogle from "../components/CallAutocompleteGoogle";
 
@@ -18,12 +11,11 @@ const Scanner = () => {
     CoordenadasContext
   );
   const isFocused = useIsFocused();
-  const [loading, setLoading] = useState(true);
 
   if (dataCoordenadas != "") {
     return (
       <>
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={container.primario}>
           <Text style={texto.titulo}>
             Escanea el codigo de barras del producto
           </Text>
@@ -33,7 +25,7 @@ const Scanner = () => {
     );
   } else {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={container.primario}>
         <Text style={texto.titulo}>
           Selecciona tu dirección antes de continuar
         </Text>
@@ -43,19 +35,5 @@ const Scanner = () => {
   }
 };
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colores.colorFondo,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  titulo: {
-    fontSize: 20,
-    color: "white",
-    textAlign: "center",
-    fontWeight: "bold",
-  },
-});
-
+const styles = StyleSheet.create({});
 export default Scanner;

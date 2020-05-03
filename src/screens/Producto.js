@@ -18,7 +18,7 @@ const Producto = ({ navigation, route }) => {
         <View style={styles.centradoTotal}>
           <Text style={styles.titulo}>Busca un producto nuevo</Text>
 
-          <BotonesProducto />
+          <BotonesProducto home />
         </View>
       </SafeAreaView>
     );
