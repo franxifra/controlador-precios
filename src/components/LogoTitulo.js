@@ -6,7 +6,7 @@ const LogoTitulo = () => {
   return (
     <>
       <Image source={require("../assets/logo.png")} style={imagen.logo} />
-      <Text style={[texto.titulo, { marginTop: 20 }]}>
+      <Text style={[texto.titulo, { marginTop: 20, marginHorizontal: 10 }]}>
         Comparador de Precios
       </Text>
       <Text></Text>
